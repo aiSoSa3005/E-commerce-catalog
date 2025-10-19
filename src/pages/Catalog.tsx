@@ -3,6 +3,7 @@ import { CiBellOn } from "react-icons/ci";
 import { TfiEmail } from "react-icons/tfi";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import InputSearch from "../components/InputSearch";
+import ProductList from "../components/ProductList";
 
 const Catalog = () => {
   return (
@@ -12,7 +13,7 @@ const Catalog = () => {
           <SiTekton className="w-10 h-10" />
         </span>
         <h1 className="text-2xl font-semibold ">HIRONAGHLE</h1>
-        <div className="absolute right-0 top-2 w-10 h-10 bg-white border-b border-t border-l border-gray-300 flex items-center justify-center">
+        <div className="absolute right-0 top-4 w-7 h-7 bg-white border-b border-t border-l border-gray-300 flex items-center justify-center">
           <MdKeyboardDoubleArrowLeft />
         </div>
       </div>
@@ -33,7 +34,9 @@ const Catalog = () => {
         <div className="bg-white border border-gray-200">NAVBAR LEFT</div>
         <div className="bg-white">FILTERS CATEGORY</div>
       </div>
-      <div className="bg-white border border-gray-200 ">MAIN</div>
+      <div className="bg-white border border-gray-200 ">
+        <ProductList />
+      </div>
       <div className="bg-white">DETAILS PRODUCT</div>
     </div>
   );
