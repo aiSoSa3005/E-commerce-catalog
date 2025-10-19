@@ -1,4 +1,5 @@
 import useProducts from "../hooks/useProducts";
+import CardProduct from "./CardProduct";
 
 const ProductList = () => {
   const { products, loading, error } = useProducts();
@@ -8,17 +9,9 @@ const ProductList = () => {
 
   return (
     <>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 grid-rows-3 gap-4 p-3">
         {products.map((product) => (
-          <div key={product.id}>
-            <img
-              className="w-full h-full object-cover"
-              src={product.image}
-              alt={product.title}
-            />
-            <h3>{product.title}</h3>
-            <p>{product.price}</p>
-          </div>
+          <CardProduct key={product.id} product={product} />
         ))}
       </div>
     </>

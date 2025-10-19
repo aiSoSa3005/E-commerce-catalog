@@ -5,4 +5,6 @@ export interface Product {
   description: string;
   category: string;
   image: string;
+  size: string[];
+  brand: string;
 }
