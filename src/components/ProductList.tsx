@@ -9,10 +9,11 @@ const ProductList = () => {
 
   return (
     <>
-      <div className="grid grid-cols-3 grid-rows-3 gap-4 p-3">
+      <div className="grid grid-cols-3 grid-rows-auto gap-4 p-4">
         {products.map((product) => (
           <CardProduct key={product.id} product={product} />
         ))}
+        {/*  <CardProduct product={products[0]} /> */}
       </div>
     </>
   );
