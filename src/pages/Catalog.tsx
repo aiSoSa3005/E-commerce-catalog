@@ -4,6 +4,7 @@ import { TfiEmail } from "react-icons/tfi";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import InputSearch from "../components/InputSearch";
 import ProductList from "../components/ProductList";
+import SectionBar from "../components/SectionBar";
 
 const Catalog = () => {
   return (
@@ -34,7 +35,8 @@ const Catalog = () => {
         <div className="bg-white border border-gray-200">NAVBAR LEFT</div>
         <div className="bg-white">FILTERS CATEGORY</div>
       </div>
-      <div className="bg-white border border-gray-200 ">
+      <div className="bg-white border border-gray-200 p-2 ">
+        <SectionBar />
         <ProductList />
       </div>
       <div className="bg-white">DETAILS PRODUCT</div>
