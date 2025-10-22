@@ -3,8 +3,9 @@ import { API_URL } from "../api";
 import { useState, useEffect } from "react";
 
 import axios from "axios";
+import { filterBySection } from "../utilities";
 
-const useProducts = (query: string) => {
+const useProducts = (query: string, section: string) => {
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -34,11 +35,14 @@ const useProducts = (query: string) => {
   }, []);
 
   // Filter products based on query
-  const products = query
+
+  const filteredProducts = query
     ? allProducts.filter((product) =>
         product.title.toLowerCase().includes(query.toLowerCase())
       )
     : allProducts;
+
+  const products = filterBySection(section, filteredProducts);
 
   return { products, loading, error };
 };

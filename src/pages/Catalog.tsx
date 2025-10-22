@@ -9,6 +9,25 @@ import { useState } from "react";
 
 const Catalog = () => {
   const [query, setQuery] = useState("");
+  const [section, setSection] = useState("all");
+  const dictSection = {
+    all: {
+      title: "All Products",
+      description: "Shop all products",
+    },
+    "new-arrival": {
+      title: "New Arrival",
+      description: "Stop into the Style- Fresh Kicks & Fresh Looks",
+    },
+    trendy: {
+      title: "Trendy",
+      description: "Newest in streetwear, sneakers, and accessories",
+    },
+    popular: {
+      title: "Popular",
+      description: "Shop the most popular styles",
+    },
+  };
   return (
     <div className="grid h-screen w-screen lg:grid-cols-[2fr_5fr_3fr] grid-rows-[auto_1fr]">
       <div className="bg-white relative font-inter border border-gray-200 text-xl font-semibold flex items-center gap-2 p-2">
@@ -43,8 +62,14 @@ const Catalog = () => {
         <div className="bg-white">FILTERS CATEGORY</div>
       </div>
       <div className="bg-white border border-gray-200 p-2 ">
-        <SectionBar />
-        <ProductList query={query} />
+        <SectionBar onSectionChange={(section) => setSection(section)} />
+        <h1 className="text-2xl font-semibold mt-4 ml-4">
+          {dictSection[section as keyof typeof dictSection].title}
+        </h1>
+        <p className="text-gray-500 mt-2 ml-4">
+          {dictSection[section as keyof typeof dictSection].description}
+        </p>
+        <ProductList query={query} section={section} />
       </div>
       <div className="bg-white">DETAILS PRODUCT</div>
     </div>

@@ -1,7 +1,10 @@
 import { useState } from "react";
 
-const SectionBar = () => {
-  const [activeSection, setActiveSection] = useState("new-arrival");
+interface SectionBarProps {
+  onSectionChange: (section: string) => void;
+}
+const SectionBar = ({ onSectionChange }: SectionBarProps) => {
+  const [activeSection, setActiveSection] = useState("");
   const activeSections = [
     {
       id: "new-arrival",
@@ -18,6 +21,7 @@ const SectionBar = () => {
   ];
   const handleSectionClick = (sectionId: string) => {
     setActiveSection(sectionId);
+    onSectionChange(sectionId);
   };
   return (
     <div className="flex items-center justify-between">

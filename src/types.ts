@@ -7,4 +7,6 @@ export interface Product {
   image: string;
   size: string[];
   brand: string;
+  isNew: boolean;
+  rating: number;
 }
