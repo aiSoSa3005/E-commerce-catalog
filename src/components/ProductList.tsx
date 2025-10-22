@@ -1,7 +1,11 @@
 import useProducts from "../hooks/useProducts";
 import CardProduct from "./CardProduct";
 
-const ProductList = () => {
+interface ProductListProps {
+  query: string;
+}
+
+const ProductList = ({ query }: ProductListProps) => {
   const { products, loading, error } = useProducts();
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;

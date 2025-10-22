@@ -35,7 +35,7 @@ const SectionBar = () => {
         ))}
       </ul>
       <select
-        className="border border-gray-300 rounded-md px-2 py-1 mr-6"
+        className="border border-gray-300 rounded-md px-2 py-1 xl:mr-6 2xl:mr-24"
         name=""
         id=""
       >

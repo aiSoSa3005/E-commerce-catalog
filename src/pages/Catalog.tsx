@@ -20,7 +20,7 @@ const Catalog = () => {
       </div>
       <nav className="bg-white col-span-2 border border-gray-200 w-full flex items-center gap-2 p-2">
         <div className="flex-2">
-          <InputSearch />
+          <InputSearch onSearch={(query) => console.log(query)} />
         </div>
         <div className="w-full flex items-center gap-2 flex-1">
           <div className="w-10 h-10 bg-white border border-gray-300 flex items-center justify-center">
@@ -37,7 +37,7 @@ const Catalog = () => {
       </div>
       <div className="bg-white border border-gray-200 p-2 ">
         <SectionBar />
-        <ProductList />
+        <ProductList query="" />
       </div>
       <div className="bg-white">DETAILS PRODUCT</div>
     </div>

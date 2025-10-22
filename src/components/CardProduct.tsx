@@ -27,9 +27,11 @@ const CardProduct = ({ product }: CardProductProps) => {
             </p>
           </div>
           <button
-            className={`bg-${
-              isHovered ? "blue-500" : "white"
-            } border border-blue-500 text-white overflow-hidden align-center px-2 py-2 max-w-[50px]  hover:max-w-[120px] transition-all duration-300 flex items-center gap-2 whitespace-nowrap`}
+            className={`${
+              isHovered
+                ? "bg-blue-500 border-blue-500"
+                : "bg-white border-blue-300"
+            } border-3 border-blue-300 text-white overflow-hidden align-center px-2 py-2 max-w-[50px] hover:max-w-[120px] transition-all duration-300 flex items-center gap-2 whitespace-nowrap`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
