@@ -6,7 +6,7 @@ interface ProductListProps {
 }
 
 const ProductList = ({ query }: ProductListProps) => {
-  const { products, loading, error } = useProducts();
+  const { products, loading, error } = useProducts(query);
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
   if (products.length === 0) return <div>No products found</div>;

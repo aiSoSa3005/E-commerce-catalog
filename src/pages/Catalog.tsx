@@ -5,8 +5,10 @@ import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import InputSearch from "../components/InputSearch";
 import ProductList from "../components/ProductList";
 import SectionBar from "../components/SectionBar";
+import { useState } from "react";
 
 const Catalog = () => {
+  const [query, setQuery] = useState("");
   return (
     <div className="grid h-screen w-screen lg:grid-cols-[2fr_5fr_3fr] grid-rows-[auto_1fr]">
       <div className="bg-white relative font-inter border border-gray-200 text-xl font-semibold flex items-center gap-2 p-2">
@@ -20,7 +22,12 @@ const Catalog = () => {
       </div>
       <nav className="bg-white col-span-2 border border-gray-200 w-full flex items-center gap-2 p-2">
         <div className="flex-2">
-          <InputSearch onSearch={(query) => console.log(query)} />
+          <InputSearch
+            onSearch={(query) => {
+              setQuery(query);
+              console.log(query);
+            }}
+          />
         </div>
         <div className="w-full flex items-center gap-2 flex-1">
           <div className="w-10 h-10 bg-white border border-gray-300 flex items-center justify-center">
@@ -37,7 +44,7 @@ const Catalog = () => {
       </div>
       <div className="bg-white border border-gray-200 p-2 ">
         <SectionBar />
-        <ProductList query="" />
+        <ProductList query={query} />
       </div>
       <div className="bg-white">DETAILS PRODUCT</div>
     </div>
