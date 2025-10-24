@@ -39,7 +39,7 @@ const SectionBar = ({ onSectionChange }: SectionBarProps) => {
         ))}
       </ul>
       <select
-        className="border border-gray-300 rounded-md px-2 py-1 xl:mr-6 2xl:mr-24"
+        className="border border-gray-300 outline-none rounded-md px-2 py-1 xl:mr-6 2xl:mr-24"
         name=""
         id=""
       >

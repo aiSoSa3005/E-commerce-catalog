@@ -1,6 +1,5 @@
-import useProducts from "../hooks/useProducts";
 import CardProduct from "./CardProduct";
-
+import useProducts from "../hooks/useProducts";
 interface ProductListProps {
   query: string;
   section: string;
@@ -15,8 +14,8 @@ const ProductList = ({ query, section }: ProductListProps) => {
   return (
     <>
       <div className="grid grid-cols-3 grid-rows-auto gap-4 p-4">
-        {products.map((product) => (
-          <CardProduct key={product.id} product={product} />
+        {products.map((product, index) => (
+          <CardProduct key={index} product={product} />
         ))}
         {/*  <CardProduct product={products[0]} /> */}
       </div>

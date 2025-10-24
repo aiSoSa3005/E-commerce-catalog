@@ -10,3 +10,8 @@ export interface Product {
   isNew: boolean;
   rating: number;
 }
+
+export interface Category {
+  id: number;
+  name: string;
+}

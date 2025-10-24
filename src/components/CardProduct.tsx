@@ -23,7 +23,7 @@ const CardProduct = ({ product }: CardProductProps) => {
             <p className="text-gray-500 text-xs font-semibold">Price</p>
             <p className="mr-2 whitespace-nowrap text-lg font-bold text-black">
               {" "}
-              $ {product.price}
+              ${product.price}
             </p>
           </div>
           <button
@@ -37,9 +37,11 @@ const CardProduct = ({ product }: CardProductProps) => {
           >
             <AiOutlineShoppingCart
               color={isHovered ? "white" : "dodgerblue"}
-              size={20}
+              size={16}
             />
-            <p className={`text-white ${isHovered ? "block" : "hidden"}`}>
+            <p
+              className={`text-white ${isHovered ? "block" : "hidden"} text-xs`}
+            >
               Add to Cart
             </p>
           </button>

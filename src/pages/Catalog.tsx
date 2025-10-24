@@ -6,6 +6,7 @@ import InputSearch from "../components/InputSearch";
 import ProductList from "../components/ProductList";
 import SectionBar from "../components/SectionBar";
 import { useState } from "react";
+import FilterBar from "../components/FilterBar";
 
 const Catalog = () => {
   const [query, setQuery] = useState("");
@@ -35,7 +36,10 @@ const Catalog = () => {
           <SiTekton className="w-10 h-10" />
         </span>
         <h1 className="text-2xl font-semibold ">HIRONAGHLE</h1>
-        <div className="absolute right-0 top-4 w-7 h-7 bg-white border-b border-t border-l border-gray-300 flex items-center justify-center">
+        <div
+          onClick={() => setSection("all")}
+          className="absolute cursor-pointer right-0 top-4 w-7 h-7 bg-white border-b border-t border-l border-gray-300 flex items-center justify-center"
+        >
           <MdKeyboardDoubleArrowLeft />
         </div>
       </div>
@@ -44,7 +48,6 @@ const Catalog = () => {
           <InputSearch
             onSearch={(query) => {
               setQuery(query);
-              console.log(query);
             }}
           />
         </div>
@@ -59,7 +62,9 @@ const Catalog = () => {
       </nav>
       <div className="bg-white grid grid-cols-[1fr_3fr]">
         <div className="bg-white border border-gray-200">NAVBAR LEFT</div>
-        <div className="bg-white">FILTERS CATEGORY</div>
+        <div className="bg-white">
+          <FilterBar />
+        </div>
       </div>
       <div className="bg-white border border-gray-200 p-2 ">
         <SectionBar onSectionChange={(section) => setSection(section)} />

@@ -5,9 +5,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { filterBySection } from "../utilities";
 
-const useProducts = (query: string, section: string) => {
+const useProducts = (query?: string, section: string = "all") => {
   const [allProducts, setAllProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   // Fetch all products once
@@ -23,7 +23,9 @@ const useProducts = (query: string, section: string) => {
         setAllProducts(res.data.data);
       } catch (error: unknown) {
         if (!axios.isCancel(error)) {
-          setError(error as string);
+          setError(
+            error instanceof Error ? error.message : "An error occurred"
+          );
         }
       } finally {
         setLoading(false);
@@ -44,7 +46,11 @@ const useProducts = (query: string, section: string) => {
 
   const products = filterBySection(section, filteredProducts);
 
-  return { products, loading, error };
+  return {
+    products,
+    loading,
+    error,
+  };
 };
 
 export default useProducts;

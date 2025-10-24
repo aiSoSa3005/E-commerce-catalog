@@ -1,3 +1,5 @@
+import { API_URL } from "./api";
+import axios from "axios";
 import type { Product } from "./types";
 
 export function filterBySection(
@@ -12,7 +14,17 @@ export function filterBySection(
     return products.filter((product) => product.rating >= 4);
   }
   if (section === "popular") {
-    return products.filter((product) => (product.rating = 5));
+    return products.filter((product) => product.rating === 5);
   }
   return products;
+}
+
+export async function getCategories() {
+  try {
+    const response = await axios.get(`${API_URL}/categories`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    return [];
+  }
 }
