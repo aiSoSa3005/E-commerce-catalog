@@ -7,6 +7,7 @@ import ProductList from "../components/ProductList";
 import SectionBar from "../components/SectionBar";
 import { useState } from "react";
 import FilterBar from "../components/FilterBar";
+import NavBar from "../components/NavBar";
 
 const Catalog = () => {
   const [query, setQuery] = useState("");
@@ -32,7 +33,7 @@ const Catalog = () => {
   return (
     <div className="grid h-screen w-screen lg:grid-cols-[2fr_5fr_3fr] grid-rows-[auto_1fr]">
       <div className="bg-white relative font-inter border border-gray-200 text-xl font-semibold flex items-center gap-2 p-2">
-        <span>
+        <span className="p-2">
           <SiTekton className="w-10 h-10" />
         </span>
         <h1 className="text-2xl font-semibold ">HIRONAGHLE</h1>
@@ -61,7 +62,9 @@ const Catalog = () => {
         </div>
       </nav>
       <div className="bg-white grid grid-cols-[1fr_3fr]">
-        <div className="bg-white border border-gray-200">NAVBAR LEFT</div>
+        <div className="bg-white border border-gray-200">
+          <NavBar />
+        </div>
         <div className="bg-white">
           <FilterBar />
         </div>

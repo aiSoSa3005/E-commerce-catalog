@@ -20,7 +20,7 @@ const useCategories = () => {
             signal: controller.signal,
           }
         );
-        setCategories(res.data.data as Category[]);
+        setCategories(res.data.data.slice(0, 7) as Category[]);
       } catch (error: unknown) {
         if (!axios.isCancel(error)) {
           setError(error as string);
