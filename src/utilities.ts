@@ -28,3 +28,8 @@ export async function getCategories() {
     return [];
   }
 }
+
+export function getBrands(products: Product[]) {
+  const brands = products.map((product) => product.brand).slice(0, 10);
+  return [...new Set(brands)];
+}
