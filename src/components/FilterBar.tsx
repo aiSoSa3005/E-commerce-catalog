@@ -9,7 +9,7 @@ import useFilterStore from "../store/filterStore";
 
 const FilterBar = () => {
   const { categories, error, loading } = useCategories();
-  const { products } = useProducts();
+  const { brands } = useProducts();
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [showRanges, setShowRanges] = useState<boolean>(true);
   const [showSizes, setShowSizes] = useState<boolean>(true);
@@ -28,7 +28,6 @@ const FilterBar = () => {
     ...categories,
   ];
 
-  const brands: string[] = getBrands(products);
   const ranges = [
     { label: "0-100", min: 0, max: 100 },
     { label: "100-200", min: 100, max: 200 },
@@ -36,6 +35,7 @@ const FilterBar = () => {
     { label: "300-400", min: 300, max: 400 },
     { label: "over 400", min: 400, max: Infinity },
   ];
+
   const sizes = [
     { label: "S", size: "S" },
     { label: "M", size: "M" },
@@ -43,7 +43,6 @@ const FilterBar = () => {
     { label: "XL", size: "XL" },
     { label: "XXL", size: "XXL" },
   ];
-  console.log(checkedPrices);
 
   // Helper function to toggle an item in an array
   // If item exists, remove it; if not, add it
