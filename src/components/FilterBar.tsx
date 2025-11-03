@@ -5,33 +5,98 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import useCategories from "../hooks/useCategories";
 import { getBrands } from "../utilities";
 import useProducts from "../hooks/useProducts";
+import useFilterStore from "../store/filterStore";
 
 const FilterBar = () => {
   const { categories, error, loading } = useCategories();
   const { products } = useProducts();
-  const [selectedCategory, setSelectedCategory] = useState<number>(0);
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [showRanges, setShowRanges] = useState<boolean>(true);
   const [showSizes, setShowSizes] = useState<boolean>(true);
   const [showBrands, setShowBrands] = useState<boolean>(true);
+
+  // State to track which checkboxes are checked
+  // We use arrays because multiple items can be selected
+  const [checkedPrices, setCheckedPrices] = useState<string[]>([]);
+  const [checkedSizes, setCheckedSizes] = useState<string[]>([]);
+  const [checkedBrands, setCheckedBrands] = useState<string[]>([]);
+
+  const { setCategory, setPrice, setSize, setBrand, resetFilters } =
+    useFilterStore();
   const allCategories = [
     { _id: 0, name: "All", description: "All categories" },
     ...categories,
   ];
+
   const brands: string[] = getBrands(products);
   const ranges = [
-    { label: "0-100" },
-    { label: "100-200" },
-    { label: "200-300" },
-    { label: "300-400" },
-    { label: "over 400" },
+    { label: "0-100", min: 0, max: 100 },
+    { label: "100-200", min: 100, max: 200 },
+    { label: "200-300", min: 200, max: 300 },
+    { label: "300-400", min: 300, max: 400 },
+    { label: "over 400", min: 400, max: Infinity },
   ];
   const sizes = [
-    { label: "S" },
-    { label: "M" },
-    { label: "L" },
-    { label: "XL" },
-    { label: "XXL" },
+    { label: "S", size: "S" },
+    { label: "M", size: "M" },
+    { label: "L", size: "L" },
+    { label: "XL", size: "XL" },
+    { label: "XXL", size: "XXL" },
   ];
+  console.log(checkedPrices);
+
+  // Helper function to toggle an item in an array
+  // If item exists, remove it; if not, add it
+  const toggleArrayItem = (array: string[], item: string): string[] => {
+    if (array.includes(item)) {
+      // Remove item if it's already in the array
+      return array.filter((i) => i !== item);
+    } else {
+      // Add item if it's not in the array
+      return [...array, item];
+    }
+  };
+
+  // Handler for price checkbox changes
+  const handlePriceChange = (rangeLabel: string) => {
+    setCheckedPrices((prev) => toggleArrayItem(prev, rangeLabel));
+  };
+
+  // Handler for size checkbox changes
+  const handleSizeChange = (size: string) => {
+    setCheckedSizes((prev) => toggleArrayItem(prev, size));
+  };
+
+  // Handler for brand checkbox changes
+  const handleBrandChange = (brand: string) => {
+    setCheckedBrands((prev) => toggleArrayItem(prev, brand));
+  };
+
+  // Function to apply filters to the store
+  const handleApplyFilters = () => {
+    // Convert checked price labels to price range objects
+    const priceRanges = ranges
+      .filter((range) => checkedPrices.includes(range.label))
+      .map((range) => ({ min: range.min, max: range.max }));
+
+    // Update the store with all checked filters
+    setPrice(priceRanges);
+    setSize(checkedSizes);
+    setBrand(checkedBrands);
+  };
+
+  // Function to reset all filters
+  const handleResetFilters = () => {
+    // Clear local state
+    setCheckedPrices([]);
+    setCheckedSizes([]);
+    setCheckedBrands([]);
+    setSelectedCategory("all");
+
+    // Clear store
+    resetFilters();
+  };
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
@@ -44,11 +109,14 @@ const FilterBar = () => {
           <li
             key={index}
             className={`cursor-pointer p-2 text-lg pl-4 ${
-              selectedCategory === category._id
+              selectedCategory === category.name
                 ? "text-black font-medium "
                 : "text-gray-500"
             }`}
-            onClick={() => setSelectedCategory(category._id)}
+            onClick={() => {
+              setSelectedCategory(category.name);
+              setCategory(category.name);
+            }}
           >
             {category.name}
           </li>
@@ -80,8 +148,18 @@ const FilterBar = () => {
               key={index}
               className="flex items-center text-gray-500 gap-2 p-2"
             >
-              <input className="w-6 h-6" type="checkbox" id={range.label} />
-              <span className="text-lg">${range.label}</span>
+              <input
+                className="w-6 h-6"
+                type="checkbox"
+                id={range.label}
+                // Controlled checkbox: checked state comes from our state
+                checked={checkedPrices.includes(range.label)}
+                // When checkbox changes, update our state
+                onChange={() => handlePriceChange(range.label)}
+              />
+              <label htmlFor={range.label} className="text-lg cursor-pointer">
+                ${range.label}
+              </label>
             </div>
           ))}
         </div>
@@ -110,8 +188,18 @@ const FilterBar = () => {
               key={index}
               className="flex items-center text-gray-500 gap-2 p-2"
             >
-              <input className="w-6 h-6" type="checkbox" id={size.label} />
-              <span className="text-lg">{size.label}</span>
+              <input
+                className="w-6 h-6"
+                type="checkbox"
+                id={size.label}
+                // Controlled checkbox: checked state comes from our state
+                checked={checkedSizes.includes(size.size)}
+                // When checkbox changes, update our state
+                onChange={() => handleSizeChange(size.size)}
+              />
+              <label htmlFor={size.label} className="text-lg cursor-pointer">
+                {size.label}
+              </label>
             </div>
           ))}
         </div>
@@ -140,18 +228,35 @@ const FilterBar = () => {
               key={index}
               className="flex items-center text-gray-500 gap-2 p-2"
             >
-              <input className="w-6 h-6" type="checkbox" id={brand} />
-              <span className="text-lg">{brand}</span>
+              <input
+                className="w-6 h-6"
+                type="checkbox"
+                id={brand}
+                // Controlled checkbox: checked state comes from our state
+                checked={checkedBrands.includes(brand)}
+                // When checkbox changes, update our state
+                onChange={() => handleBrandChange(brand)}
+              />
+              <label htmlFor={brand} className="text-lg cursor-pointer">
+                {brand}
+              </label>
             </div>
           ))}
         </div>
       </div>
       {/* Apply Filters Button */}
       <div className="flex items-center gap-2 p-4 justify-between">
-        <button className="bg-blue-500 text-white px-4 py-2 flex items-center gap-2 cursor-pointer">
+        <button
+          className="bg-blue-500 text-white px-4 py-2 flex items-center gap-2 cursor-pointer hover:bg-blue-600 transition-colors"
+          onClick={handleApplyFilters}
+        >
           Apply Filters
         </button>
-        <div className="cursor-pointer bg-gray-100 border border-gray-300 p-2">
+        <div
+          className="cursor-pointer bg-gray-100 border border-gray-300 p-2 hover:bg-gray-200 transition-colors"
+          onClick={handleResetFilters}
+          title="Reset all filters"
+        >
           <RiDeleteBin6Line
             size={18}
             className="text-2xl cursor-pointer"

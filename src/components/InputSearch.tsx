@@ -11,7 +11,7 @@ const InputSearch = ({ onSearch }: InputSearchProps) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onSearch(search);
-    }, 2000);
+    }, 500);
     return () => clearTimeout(timer);
   }, [search]);
   return (

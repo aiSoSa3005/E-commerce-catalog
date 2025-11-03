@@ -17,7 +17,6 @@ const ProductList = ({ query, section }: ProductListProps) => {
         {products.map((product, index) => (
           <CardProduct key={index} product={product} />
         ))}
-        {/*  <CardProduct product={products[0]} /> */}
       </div>
     </>
   );

@@ -43,11 +43,11 @@ const SectionBar = ({ onSectionChange }: SectionBarProps) => {
         name=""
         id=""
       >
-        <option value="1">Sort by</option>
-        <option value="2">Price: Low to High</option>
-        <option value="3">Price: High to Low</option>
-        <option value="4">Newest First</option>
-        <option value="5">Oldest First</option>
+        <option value="">Sort by</option>
+        <option value="price-low-to-high">Price: Low to High</option>
+        <option value="price-high-to-low">Price: High to Low</option>
+        <option value="newest-first">Newest First</option>
+        <option value="oldest-first">Oldest First</option>
       </select>
     </div>
   );
