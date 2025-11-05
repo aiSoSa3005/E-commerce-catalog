@@ -3,7 +3,6 @@ import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import useCategories from "../hooks/useCategories";
-import { getBrands } from "../utilities";
 import useProducts from "../hooks/useProducts";
 import useFilterStore from "../store/filterStore";
 

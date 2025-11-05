@@ -3,12 +3,16 @@ import type { Product } from "../types";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 interface CardProductProps {
   product: Product;
+  onClick: () => void;
 }
 
-const CardProduct = ({ product }: CardProductProps) => {
+const CardProduct = ({ product, onClick }: CardProductProps) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
-    <div className="w-[250px] h-[350px] aspect-[3/4] flex flex-col justify-between items-center border border-gray-200 p-2">
+    <div
+      onClick={onClick}
+      className="w-[250px] h-[350px] aspect-[3/4] flex flex-col justify-between items-center border border-gray-200 p-2"
+    >
       <div>
         <img
           className=" object-contain aspect-square auto"

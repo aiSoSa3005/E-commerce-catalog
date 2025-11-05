@@ -1,48 +1,19 @@
-import type { Product } from "../types";
-import { API_URL } from "../api";
-import { useState, useEffect } from "react";
-
-import axios from "axios";
-import { filterBySection, filterProducts, getBrands } from "../utilities";
+import { useEffect } from "react";
+import { filterBySection, filterProducts } from "../utilities";
 import useFilterStore from "../store/filterStore";
+import useProductStore from "../store/productStore";
 
 const useProducts = (query?: string, section: string = "all") => {
-  const [allProducts, setAllProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [brands, setBrands] = useState<string[]>([]);
-
+  // Get products from store instead of fetching
+  const { products: allProducts, loading, error, brands, fetchProducts } = useProductStore();
+  
   // Read filter values from the store
-  // This hook will re-run whenever these values change
   const { category, price, size, brand } = useFilterStore();
 
-  // Fetch all products once
+  // Fetch products once when component mounts (store handles caching)
   useEffect(() => {
-    const controller = new AbortController();
-    const fetchProducts = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const res = await axios.get(`${API_URL}/products`, {
-          signal: controller.signal,
-        });
-        setAllProducts(res.data.data);
-        const brands = getBrands(res.data.data);
-        setBrands(brands);
-      } catch (error: unknown) {
-        if (!axios.isCancel(error)) {
-          setError(
-            error instanceof Error ? error.message : "An error occurred"
-          );
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchProducts();
-    return () => controller.abort();
-  }, []);
+  }, [fetchProducts]);
 
   // Step 1: Filter by text query (search)
   const filteredByQuery = query

@@ -8,6 +8,7 @@ import SectionBar from "../components/SectionBar";
 import { useState } from "react";
 import FilterBar from "../components/FilterBar";
 import NavBar from "../components/NavBar";
+import { Outlet } from "react-router-dom";
 
 const Catalog = () => {
   const [query, setQuery] = useState("");
@@ -69,7 +70,7 @@ const Catalog = () => {
           <FilterBar />
         </div>
       </div>
-      <div className="bg-white border border-gray-200 p-2 ">
+      <div className="bg-white border border-gray-200 p-2  ">
         <SectionBar onSectionChange={(section) => setSection(section)} />
         <h1 className="text-2xl font-semibold mt-4 ml-4">
           {dictSection[section as keyof typeof dictSection].title}
@@ -79,7 +80,9 @@ const Catalog = () => {
         </p>
         <ProductList query={query} section={section} />
       </div>
-      <div className="bg-white">DETAILS PRODUCT</div>
+      <div className="bg-white">
+        <Outlet />
+      </div>
     </div>
   );
 };
