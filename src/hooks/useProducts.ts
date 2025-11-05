@@ -4,10 +4,14 @@ import useFilterStore from "../store/filterStore";
 import useProductStore from "../store/productStore";
 
 const useProducts = (query?: string, section: string = "all") => {
-  // Get products from store instead of fetching
-  const { products: allProducts, loading, error, brands, fetchProducts } = useProductStore();
-  
-  // Read filter values from the store
+  const {
+    products: allProducts,
+    loading,
+    error,
+    brands,
+    fetchProducts,
+  } = useProductStore();
+
   const { category, price, size, brand } = useFilterStore();
 
   // Fetch products once when component mounts (store handles caching)
@@ -15,7 +19,7 @@ const useProducts = (query?: string, section: string = "all") => {
     fetchProducts();
   }, [fetchProducts]);
 
-  // Step 1: Filter by text query (search)
+  // Step 1: Filter by text query
   const filteredByQuery = query
     ? allProducts.filter((product) =>
         product.title.toLowerCase().includes(query.toLowerCase())
@@ -26,7 +30,7 @@ const useProducts = (query?: string, section: string = "all") => {
   const filteredBySection = filterBySection(section, filteredByQuery);
 
   // Step 3: Apply store filters (category, price, size, brand)
-  // This is where your filter store values are used!
+
   const products = filterProducts(
     filteredBySection,
     category, // from store

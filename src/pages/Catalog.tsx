@@ -32,7 +32,7 @@ const Catalog = () => {
     },
   };
   return (
-    <div className="grid h-screen w-screen lg:grid-cols-[2fr_5fr_3fr] grid-rows-[auto_1fr]">
+    <div className="grid h-screen w-screen lg:grid-cols-[2fr_5fr_3fr] grid-rows-[auto_1fr] mx-auto max-w-[1460px]">
       <div className="bg-white relative font-inter border border-gray-200 text-xl font-semibold flex items-center gap-2 p-2">
         <span className="p-2">
           <SiTekton className="w-10 h-10" />
