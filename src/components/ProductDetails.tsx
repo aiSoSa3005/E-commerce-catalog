@@ -33,7 +33,7 @@ const ProductDetails = () => {
         </p>
       </div>
       <img
-        className="object-cover w-full h-[700px]"
+        className="object-cover w-full h-[500px]"
         src={product.image}
         alt={product.title}
       />
