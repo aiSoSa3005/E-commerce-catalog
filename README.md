@@ -1,10 +1,7 @@
-# 🛍️ E-commerce Catalog
+# 🛍️ E-commerce Catalog (In progress )
 
 Catalogo prodotti per e-commerce con ricerca, filtri multipli e pagina dettaglio prodotto.  
 Il progetto è ancora in sviluppo ma già include le funzionalità principali del catalogo.
-
-![Status](https://img.shields.io/badge/status-in%20progress-orange)
-![License](https://img.shields.io/badge/license-MIT-blue)
 
 ---
 
