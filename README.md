@@ -18,7 +18,7 @@ Il focus principale è sulla **struttura del front-end** e sulla **gestione dell
 
 **Attualmente disponibili**
 - ✅ Visualizzazione dei prodotti
-- ✅ Filtri multipli (prezzo, categoria, rating)
+- ✅ Filtri multipli (prezzo, categoria, rating , brand)
 - ✅ Ricerca per nome
 - ✅ Dettaglio prodotto con descrizione e immagine
 
