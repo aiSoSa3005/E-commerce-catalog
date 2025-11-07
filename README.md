@@ -1,92 +1,51 @@
 # 🛍️ E-commerce Catalog
 
-[![Repo](https://img.shields.io/badge/github-aiSoSa3005%2F%E2%80%8BE--commerce--catalog-24292e?logo=github)](https://github.com/aiSoSa3005/E-commerce-catalog)
-[![Status](https://img.shields.io/badge/status-WIP-orange)](#-roadmap)
-[![License](https://img.shields.io/badge/license-MIT-informational)](#-licenza)
-[![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen)](#-contribuire)
+Catalogo prodotti per e-commerce con ricerca, filtri multipli e pagina dettaglio prodotto.  
+Il progetto è ancora in sviluppo ma già include le funzionalità principali del catalogo.
 
-Catalogo prodotti per e-commerce: ricerca, filtri e lista prodotti. **Progetto in corso**: alcune funzionalità sono prototipi / placeholder.
-
----
-
-## 📋 Indice
-- [Obiettivi](#-obiettivi)
-- [Demo](#-demo)
-- [Funzionalità](#-funzionalità)
-- [Stack Tecnologico](#-stack-tecnologico)
-- [Struttura Progetto](#-struttura-progetto)
-- [Come avviare](#-come-avviare)
-- [Variabili d’Ambiente](#-variabili-dambiente)
-- [Qualità & Script](#-qualità--script)
-- [Roadmap](#-roadmap)
-- [Note di Architettura](#-note-di-architettura)
-- [Screenshot](#-screenshot)
-- [Contribuire](#-contribuire)
-- [Licenza](#-licenza)
+![Status](https://img.shields.io/badge/status-in%20progress-orange)
+![License](https://img.shields.io/badge/license-MIT-blue)
 
 ---
 
-## 🎯 Obiettivi
-Un catalogo pulito e veloce per:
-- sfogliare prodotti,
-- filtrare/ordinare,
-- preparare la base per carrello e checkout.
-
-> **Nota**: il progetto è pensato come training React/FE e verrà esteso in fasi.
-
----
-
-## 🌐 Demo
-- Deploy: **(in arrivo)**  
-- Design preview: **(aggiungi immagini sotto)**
+## 🎯 Obiettivo
+Creare un catalogo moderno e veloce che permetta di esplorare prodotti, applicare filtri e visualizzare i dettagli in modo chiaro e reattivo.  
+Il focus principale è sulla **struttura del front-end** e sulla **gestione dello stato**.
 
 ---
 
 ## ✨ Funzionalità
-**Fatto**
-- [x] Impianto base UI e routing
-- [x] Lista prodotti mock/fake API
-- [x] Ricerca base / filtro semplice
 
-**In corso**
-- [ ] Paginazione / infinite scroll
-- [ ] Filtri multipli (prezzo, categoria, rating)
-- [ ] Dettaglio prodotto
+**Attualmente disponibili**
+- ✅ Visualizzazione dei prodotti
+- ✅ Filtri multipli (prezzo, categoria, rating)
+- ✅ Ricerca per nome
+- ✅ Dettaglio prodotto con descrizione e immagine
 
-**Pianificato**
-- [ ] Carrello (Zustand/Context)
-- [ ] Persistenza stato (localStorage)
-- [ ] Autenticazione (login/registrazione)
-- [ ] Backend/integrazione API reali
+**In sviluppo**
+- 🔄 Persistenza del carrello
+- 💖 Wishlist
+- 📜 Paginazione / Infinite Scroll
 
 ---
 
 ## 🧰 Stack Tecnologico
-> Aggiorna questa lista secondo il tuo progetto reale.
-
-- **React** + **Vite** (o CRA)  
-- **TypeScript** *(se presente)*
-- **Tailwind CSS** / **shadcn/ui** *(se presenti)*
-- **Zustand** per stato globale *(se presente)*
-- **Axios** / **fetch** per API
-- Linting: **ESLint** + **Prettier**
+- **React** + **Vite**
+- **Tailwind CSS** per lo styling
+- **Zustand** per la gestione dello stato globale
+- **Axios** o **fetch** per le chiamate API
 
 ---
 
-## 🗂 Struttura Progetto
-```txt
-E-commerce-catalog/
-├─ src/
-│  ├─ components/         # UI atomiche e composizioni
-│  ├─ pages/              # route pages (Catalog, Product, NotFound)
-│  ├─ hooks/              # custom hooks (useProducts, useFilters, ...)
-│  ├─ store/              # stato globale (es. cartStore.ts)
-│  ├─ services/           # client API / adapters
-│  ├─ types/              # tipi TS (Product, Category, ...)
-│  ├─ utils/              # helper (formatPrice, debounce, ...)
-│  ├─ assets/             # immagini/statici
-│  └─ main.tsx
-├─ public/
-├─ .env.example
-├─ package.json
-└─ README.md
+## 🚀 Come avviare il progetto
+
+### Prerequisiti
+- Node.js versione 18 o superiore
+- NPM / PNPM / Yarn installato
+
+### Installazione
+```bash
+git clone https://github.com/aiSoSa3005/E-commerce-catalog.git
+cd E-commerce-catalog
+npm install
+
