@@ -1,73 +1,92 @@
-# React + TypeScript + Vite
+# 🛍️ E-commerce Catalog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Repo](https://img.shields.io/badge/github-aiSoSa3005%2F%E2%80%8BE--commerce--catalog-24292e?logo=github)](https://github.com/aiSoSa3005/E-commerce-catalog)
+[![Status](https://img.shields.io/badge/status-WIP-orange)](#-roadmap)
+[![License](https://img.shields.io/badge/license-MIT-informational)](#-licenza)
+[![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen)](#-contribuire)
 
-Currently, two official plugins are available:
+Catalogo prodotti per e-commerce: ricerca, filtri e lista prodotti. **Progetto in corso**: alcune funzionalità sono prototipi / placeholder.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 📋 Indice
+- [Obiettivi](#-obiettivi)
+- [Demo](#-demo)
+- [Funzionalità](#-funzionalità)
+- [Stack Tecnologico](#-stack-tecnologico)
+- [Struttura Progetto](#-struttura-progetto)
+- [Come avviare](#-come-avviare)
+- [Variabili d’Ambiente](#-variabili-dambiente)
+- [Qualità & Script](#-qualità--script)
+- [Roadmap](#-roadmap)
+- [Note di Architettura](#-note-di-architettura)
+- [Screenshot](#-screenshot)
+- [Contribuire](#-contribuire)
+- [Licenza](#-licenza)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🎯 Obiettivi
+Un catalogo pulito e veloce per:
+- sfogliare prodotti,
+- filtrare/ordinare,
+- preparare la base per carrello e checkout.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+> **Nota**: il progetto è pensato come training React/FE e verrà esteso in fasi.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🌐 Demo
+- Deploy: **(in arrivo)**  
+- Design preview: **(aggiungi immagini sotto)**
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## ✨ Funzionalità
+**Fatto**
+- [x] Impianto base UI e routing
+- [x] Lista prodotti mock/fake API
+- [x] Ricerca base / filtro semplice
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+**In corso**
+- [ ] Paginazione / infinite scroll
+- [ ] Filtri multipli (prezzo, categoria, rating)
+- [ ] Dettaglio prodotto
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+**Pianificato**
+- [ ] Carrello (Zustand/Context)
+- [ ] Persistenza stato (localStorage)
+- [ ] Autenticazione (login/registrazione)
+- [ ] Backend/integrazione API reali
+
+---
+
+## 🧰 Stack Tecnologico
+> Aggiorna questa lista secondo il tuo progetto reale.
+
+- **React** + **Vite** (o CRA)  
+- **TypeScript** *(se presente)*
+- **Tailwind CSS** / **shadcn/ui** *(se presenti)*
+- **Zustand** per stato globale *(se presente)*
+- **Axios** / **fetch** per API
+- Linting: **ESLint** + **Prettier**
+
+---
+
+## 🗂 Struttura Progetto
+```txt
+E-commerce-catalog/
+├─ src/
+│  ├─ components/         # UI atomiche e composizioni
+│  ├─ pages/              # route pages (Catalog, Product, NotFound)
+│  ├─ hooks/              # custom hooks (useProducts, useFilters, ...)
+│  ├─ store/              # stato globale (es. cartStore.ts)
+│  ├─ services/           # client API / adapters
+│  ├─ types/              # tipi TS (Product, Category, ...)
+│  ├─ utils/              # helper (formatPrice, debounce, ...)
+│  ├─ assets/             # immagini/statici
+│  └─ main.tsx
+├─ public/
+├─ .env.example
+├─ package.json
+└─ README.md
