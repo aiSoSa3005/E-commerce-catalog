@@ -1,73 +1,48 @@
-# React + TypeScript + Vite
+# 🛍️ E-commerce Catalog (In progress )
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Catalogo prodotti per e-commerce con ricerca, filtri multipli e pagina dettaglio prodotto.  
+Il progetto è ancora in sviluppo ma già include le funzionalità principali del catalogo.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎯 Obiettivo
+Creare un catalogo moderno e veloce che permetta di esplorare prodotti, applicare filtri e visualizzare i dettagli in modo chiaro e reattivo.  
+Il focus principale è sulla **struttura del front-end** e sulla **gestione dello stato**.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Funzionalità
 
-## Expanding the ESLint configuration
+**Attualmente disponibili**
+- ✅ Visualizzazione dei prodotti
+- ✅ Filtri multipli (prezzo, categoria, rating , brand)
+- ✅ Ricerca per nome
+- ✅ Dettaglio prodotto con descrizione e immagine
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**In sviluppo**
+- 🔄 Persistenza del carrello
+- 💖 Wishlist
+- 📜 Paginazione / Infinite Scroll
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🧰 Stack Tecnologico
+- **React** + **Vite**
+- **Tailwind CSS** per lo styling
+- **Zustand** per la gestione dello stato globale
+- **Axios** o **fetch** per le chiamate API
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Come avviare il progetto
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Prerequisiti
+- Node.js versione 18 o superiore
+- NPM / PNPM / Yarn installato
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Installazione
+```bash
+git clone https://github.com/aiSoSa3005/E-commerce-catalog.git
+cd E-commerce-catalog
+npm install
+
