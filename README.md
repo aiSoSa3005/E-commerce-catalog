@@ -19,6 +19,9 @@ Il focus principale è sulla **struttura del front-end** e sulla **gestione dell
 - ✅ Ricerca per nome
 - ✅ Dettaglio prodotto con descrizione e immagine
 
+  ## Current Preview
+  ![E-commerce preview](public/e-commerce-prev.png)
+
 **In sviluppo**
 - 🔄 Persistenza del carrello
 - 💖 Wishlist
