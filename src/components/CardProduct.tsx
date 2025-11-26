@@ -11,7 +11,7 @@ const CardProduct = ({ product, onClick }: CardProductProps) => {
   return (
     <div
       onClick={onClick}
-      className="w-[250px] h-[350px] aspect-[3/4] flex flex-col justify-between items-center border border-gray-200 p-2"
+      className="w-[250px] h-[350px] aspect-[3/4] flex flex-col justify-between items-center border border-gray-200 p-2 pb-4"
     >
       <div>
         <img
@@ -20,10 +20,12 @@ const CardProduct = ({ product, onClick }: CardProductProps) => {
           alt={product.title}
         />
       </div>
-      <div className="p-4 flex flex-col gap-1">
-        <h3 className="text-lg font-semibold font-inter">{product.title}</h3>
+      <div className="p-2 flex flex-col gap-1 w-[200px]">
+        <h3 className="text-lg font-semibold font-inter text-center whitespace-nowrap">
+          {product.title}
+        </h3>
         <div className="flex items-center justify-between">
-          <div>
+          <div className="">
             <p className="text-gray-500 text-xs font-semibold">Price</p>
             <p className="mr-2 whitespace-nowrap text-lg font-bold text-black">
               {" "}
