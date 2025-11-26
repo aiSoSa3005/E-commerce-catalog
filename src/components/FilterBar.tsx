@@ -3,12 +3,12 @@ import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import useCategories from "../hooks/useCategories";
-import useProducts from "../hooks/useProducts";
 import useFilterStore from "../store/filterStore";
+import useProductStore from "../store/productStore";
 
 const FilterBar = () => {
   const { categories, error, loading } = useCategories();
-  const { brands } = useProducts();
+  const brands = useProductStore((state) => state.brands);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [showRanges, setShowRanges] = useState<boolean>(true);
   const [showSizes, setShowSizes] = useState<boolean>(true);
@@ -20,8 +20,12 @@ const FilterBar = () => {
   const [checkedSizes, setCheckedSizes] = useState<string[]>([]);
   const [checkedBrands, setCheckedBrands] = useState<string[]>([]);
 
-  const { setCategory, setPrice, setSize, setBrand, resetFilters } =
-    useFilterStore();
+  const setCategory = useFilterStore((state) => state.setCategory);
+  const setPrice = useFilterStore((state) => state.setPrice);
+  const setSize = useFilterStore((state) => state.setSize);
+  const setBrand = useFilterStore((state) => state.setBrand);
+  const resetFilters = useFilterStore((state) => state.resetFilters);
+
   const allCategories = [
     { _id: 0, name: "All", description: "All categories" },
     ...categories,
