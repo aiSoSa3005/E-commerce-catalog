@@ -11,13 +11,14 @@ const CardProduct = ({ product, onClick }: CardProductProps) => {
   return (
     <div
       onClick={onClick}
-      className="w-[250px] h-[350px] aspect-[3/4] flex flex-col justify-between items-center border border-gray-200 p-2 pb-4"
+      className="aspect-[3/4] flex flex-col justify-between items-center border border-gray-200 p"
     >
       <div>
         <img
           className=" object-contain aspect-square auto"
           src={product.image}
           alt={product.title}
+          loading="lazy"
         />
       </div>
       <div className="p-2 flex flex-col gap-1 w-[200px]">

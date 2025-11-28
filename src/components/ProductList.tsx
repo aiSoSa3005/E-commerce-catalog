@@ -19,11 +19,6 @@ const ProductList = ({ query, section }: ProductListProps) => {
     return products.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
   }, [products, page]);
 
-  const hasMore = useMemo(
-    () => visibleProducts.length < products.length,
-    [visibleProducts, products]
-  );
-
   const numberOfPages = Math.ceil(products.length / PAGE_SIZE);
 
   if (loading) return <div>Loading...</div>;
@@ -35,7 +30,7 @@ const ProductList = ({ query, section }: ProductListProps) => {
 
   return (
     <div className="flex flex-col gap-6 h-[800px] relative">
-      <div className="grid grid-cols-3 grid-rows-2 gap-4 p-4">
+      <div className="grid grid-cols-3 gap-4 p-4">
         {visibleProducts.map((product) => (
           <CardProduct
             key={product._id}
