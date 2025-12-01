@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import useProducts from "../hooks/useProducts";
 import CardProduct from "./CardProduct";
 
@@ -12,6 +12,7 @@ const PAGE_SIZE = 6;
 
 const ProductList = ({ query, section }: ProductListProps) => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { products, loading, error } = useProducts(query, section);
   const [page, setPage] = useState(1);
 
@@ -36,7 +37,11 @@ const ProductList = ({ query, section }: ProductListProps) => {
             key={product._id}
             product={product}
             onClick={() => {
-              navigate(`/product/${product._id}`);
+              const params = searchParams.toString();
+              const url = params
+                ? `/product/${product._id}?${params}`
+                : `/product/${product._id}`;
+              navigate(url);
             }}
           />
         ))}
