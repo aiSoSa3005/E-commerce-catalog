@@ -14,17 +14,29 @@ interface FilterState {
 
 const useFilterStore = create<FilterState>((set) => ({
   category: "all",
-  price: [], // Empty array means no price filter (show all)
+  price: [{ min: 0, max: Infinity }],
   size: [],
   brand: [],
-  setCategory: (category: string) => set({ category }),
-  setPrice: (price: { min: number; max: number }[]) => set({ price }),
-  setSize: (size: string[]) => set({ size }),
-  setBrand: (brand: string[]) => set({ brand }),
+  setCategory: (category: string) => {
+    set({ category });
+    console.log("set category in the store>>", category);
+  },
+  setPrice: (price: { min: number; max: number }[]) => {
+    console.log("set price in the store>>", price);
+    set({ price });
+  },
+  setSize: (size: string[]) => {
+    console.log("set size in the store>>", size);
+    set({ size });
+  },
+  setBrand: (brand: string[]) => {
+    console.log("set brand in the store>>", brand);
+    set({ brand });
+  },
   resetFilters: () =>
     set({
       category: "all",
-      price: [],
+      price: [{ min: 0, max: Infinity }],
       size: [],
       brand: [],
     }),

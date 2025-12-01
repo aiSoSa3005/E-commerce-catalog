@@ -5,12 +5,17 @@ import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import InputSearch from "../components/InputSearch";
 import ProductList from "../components/ProductList";
 import SectionBar from "../components/SectionBar";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import FilterBar from "../components/FilterBar";
 import NavBar from "../components/NavBar";
 import { Outlet } from "react-router-dom";
+import useFilterSync from "../hooks/usefilterSync";
 
 const Catalog = () => {
+  const refCounte = useRef(0);
+  console.log("catalog render count: ", refCounte.current++);
+  useFilterSync();
+
   const [query, setQuery] = useState("");
   const [section, setSection] = useState("all");
   const dictSection = {
@@ -31,6 +36,7 @@ const Catalog = () => {
       description: "Shop the most popular styles",
     },
   };
+
   return (
     <div className="grid h-screen w-screen lg:grid-cols-[2fr_5fr_3fr] grid-rows-[auto_1fr] mx-auto max-w-[1460px]">
       <div className="bg-white relative font-inter border border-gray-200 text-xl font-semibold flex items-center gap-2 p-2">

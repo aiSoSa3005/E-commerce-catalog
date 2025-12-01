@@ -36,7 +36,7 @@ const FilterBar = () => {
     { label: "100-200", min: 100, max: 200 },
     { label: "200-300", min: 200, max: 300 },
     { label: "300-400", min: 300, max: 400 },
-    { label: "over 400", min: 400, max: Infinity },
+    { label: "over 400", min: 400, max: 100000 },
   ];
 
   const sizes = [

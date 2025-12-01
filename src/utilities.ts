@@ -62,3 +62,13 @@ export function getBrands(products: Product[]) {
   const brands = products.map((product) => product.brand).slice(0, 10);
   return [...new Set(brands)];
 }
+
+export function deleteEmptyFilter(params: URLSearchParams) {
+  const newParams = new URLSearchParams();
+  params.forEach((value, key) => {
+    if (value !== "") {
+      newParams.set(key, value);
+    }
+  });
+  return newParams;
+}

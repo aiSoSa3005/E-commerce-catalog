@@ -1,18 +1,21 @@
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import useProductStore from "../store/productStore";
 import { IoCartOutline, IoHeartOutline } from "react-icons/io5";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const { getProductById, fetchProducts, loading } = useProductStore();
+
+  const getProductById = useProductStore((state) => state.getProductById);
+  const loading = useProductStore((state) => state.loading);
+  const fetchProducts = useProductStore((state) => state.fetchProducts);
 
   // Fetch products if not already loaded
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
 
-  const product = id ? getProductById(id) : undefined;
+  const product = useMemo(() => (id ? getProductById(id) : undefined), [id]);
 
   if (loading) {
     return <div>Loading product...</div>;
