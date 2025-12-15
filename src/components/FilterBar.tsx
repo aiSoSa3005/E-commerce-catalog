@@ -10,9 +10,9 @@ const FilterBar = () => {
   const { categories, error, loading } = useCategories();
   const brands = useProductStore((state) => state.brands);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [showRanges, setShowRanges] = useState<boolean>(true);
-  const [showSizes, setShowSizes] = useState<boolean>(true);
-  const [showBrands, setShowBrands] = useState<boolean>(true);
+  const [showRanges, setShowRanges] = useState<boolean>(false);
+  const [showSizes, setShowSizes] = useState<boolean>(false);
+  const [showBrands, setShowBrands] = useState<boolean>(false);
 
   // State to track which checkboxes are checked
   // We use arrays because multiple items can be selected

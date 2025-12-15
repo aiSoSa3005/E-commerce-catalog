@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useMemo } from "react";
 import useProductStore from "../store/productStore";
 import { IoCartOutline, IoHeartOutline } from "react-icons/io5";
+import useCartStore from "../store/cartStore";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -14,9 +15,14 @@ const ProductDetails = () => {
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
-  console.log(id);
-  const product = useMemo(() => (id ? getProductById(id) : undefined), [id]);
 
+  const product = useMemo(() => (id ? getProductById(id) : undefined), [id]);
+  const addCartProduct = useCartStore((state) => state.addCartProduct);
+  const handleOnCartClick = () => {
+    const product = getProductById(id as string);
+    if (product) addCartProduct(product);
+    return;
+  };
   if (loading) {
     return <div>Loading product...</div>;
   }
@@ -71,7 +77,10 @@ const ProductDetails = () => {
           ))}
         </div>
         <div className="flex flex-row items-center justify-between w-full gap-2 mt-4">
-          <button className="flex cursor-pointer flex-1 bg-blue-500 text-white px-4 py-2 flex-row items-center gap-2">
+          <button
+            onClick={handleOnCartClick}
+            className="flex cursor-pointer flex-1 bg-blue-500 text-white px-4 py-2 flex-row items-center gap-2"
+          >
             Add to cart <IoCartOutline size={20} />
           </button>
           <button className="flex cursor-pointer flex-1 bg-white text-blue-500 border border-blue-500 px-4 py-2 flex-row items-center gap-2">
