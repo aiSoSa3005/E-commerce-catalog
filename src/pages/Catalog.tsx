@@ -9,7 +9,8 @@ import { useRef, useState } from "react";
 import FilterBar from "../components/FilterBar";
 import NavBar from "../components/NavBar";
 import { Outlet } from "react-router-dom";
-import useFilterSync from "../hooks/usefilterSync";
+import useFilterSync from "../hooks/useFilterSync";
+import useCartStore from "../store/cartStore";
 
 const Catalog = () => {
   const refCounte = useRef(0);
@@ -18,6 +19,8 @@ const Catalog = () => {
 
   const [query, setQuery] = useState("");
   const [section, setSection] = useState("all");
+  /*  const { cartProducts } = useCartStore();
+  console.log(cartProducts); */
   const dictSection = {
     all: {
       title: "All Products",

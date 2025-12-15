@@ -14,7 +14,7 @@ const ProductDetails = () => {
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
-
+  console.log(id);
   const product = useMemo(() => (id ? getProductById(id) : undefined), [id]);
 
   if (loading) {
@@ -22,7 +22,9 @@ const ProductDetails = () => {
   }
 
   if (!product) {
-    return <div>Product not found</div>;
+    return (
+      <div className="text-center text-xl font-bold">Product not found</div>
+    );
   }
 
   return (

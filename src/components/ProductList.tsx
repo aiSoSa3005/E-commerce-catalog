@@ -2,6 +2,8 @@ import { useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useProducts from "../hooks/useProducts";
 import CardProduct from "./CardProduct";
+import useProductStore from "../store/productStore";
+import useCartStore from "../store/cartStore";
 
 interface ProductListProps {
   query: string;
@@ -21,6 +23,13 @@ const ProductList = ({ query, section }: ProductListProps) => {
   }, [products, page]);
 
   const numberOfPages = Math.ceil(products.length / PAGE_SIZE);
+  const getProductById = useProductStore((state) => state.getProductById);
+  const addCartProduct = useCartStore((state) => state.addCartProduct);
+  const handleOnCartClick = (id: number) => {
+    const product = getProductById(id);
+    if (product) addCartProduct(product);
+    return;
+  };
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -36,7 +45,8 @@ const ProductList = ({ query, section }: ProductListProps) => {
           <CardProduct
             key={product._id}
             product={product}
-            onClick={() => {
+            onCartClick={handleOnCartClick}
+            OnImgClick={() => {
               const params = searchParams.toString();
               const url = params
                 ? `/product/${product._id}?${params}`

@@ -3,18 +3,21 @@ import type { Product } from "../types";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 interface CardProductProps {
   product: Product;
-  onClick: () => void;
+  OnImgClick: () => void;
+  onCartClick: (id: number) => void;
 }
 
-const CardProduct = ({ product, onClick }: CardProductProps) => {
+const CardProduct = ({
+  product,
+  OnImgClick,
+  onCartClick,
+}: CardProductProps) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
-    <div
-      onClick={onClick}
-      className="aspect-[3/4] flex flex-col justify-between items-center border border-gray-200 p"
-    >
+    <div className="aspect-[3/4] flex flex-col justify-between items-center border border-gray-200 p">
       <div>
         <img
+          onClick={OnImgClick}
           className=" object-contain aspect-square auto"
           src={product.image}
           alt={product.title}
@@ -48,6 +51,9 @@ const CardProduct = ({ product, onClick }: CardProductProps) => {
             />
             <p
               className={`text-white ${isHovered ? "block" : "hidden"} text-xs`}
+              onClick={() => {
+                onCartClick(product._id);
+              }}
             >
               Add to Cart
             </p>
