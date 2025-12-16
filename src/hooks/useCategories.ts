@@ -3,12 +3,19 @@ import { API_URL } from "../api";
 import axios from "axios";
 import type { Category } from "../types";
 
+let cachedCategories: Category[] | null = null;
+
 const useCategories = () => {
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState<Category[]>(
+    cachedCategories ?? []
+  );
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!cachedCategories);
 
   useEffect(() => {
+    if (cachedCategories) return;
+
+    console.log("IN Cat");
     const controller = new AbortController();
     const fetchCategories = async () => {
       try {
@@ -20,7 +27,9 @@ const useCategories = () => {
             signal: controller.signal,
           }
         );
-        setCategories(res.data.data.slice(0, 7) as Category[]);
+        const data = res.data.data.slice(0, 7);
+        cachedCategories = data;
+        setCategories(data);
       } catch (error: unknown) {
         if (!axios.isCancel(error)) {
           setError(error as string);
