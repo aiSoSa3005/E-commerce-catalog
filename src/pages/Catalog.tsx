@@ -5,11 +5,14 @@ import FilterBar from "../components/FilterBar";
 import { Outlet } from "react-router-dom";
 import useFilterSync from "../hooks/useFilterSync";
 import MainLayout from "../layouts/MainLayout";
+import useCartStore from "../store/cartStore";
 
 const Catalog = () => {
   const refCounte = useRef(0);
   console.log("catalog render count: ", refCounte.current++);
   useFilterSync();
+  /*  const { cartProducts } = useCartStore();
+  console.log(cartProducts); */
 
   const [query, setQuery] = useState("");
   const [section, setSection] = useState("all");

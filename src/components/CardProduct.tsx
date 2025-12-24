@@ -1,9 +1,10 @@
 import { useState } from "react";
 import type { Product } from "../types";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useLocation } from "react-router-dom";
 interface CardProductProps {
   product: Product;
-  OnImgClick: () => void;
+  OnImgClick?: () => void;
   onCartClick: (id: number) => void;
 }
 
@@ -13,6 +14,8 @@ const CardProduct = ({
   onCartClick,
 }: CardProductProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const location = useLocation();
+  const isCartPage = location.pathname.startsWith("/cart");
   return (
     <div className="aspect-[3/4] flex flex-col justify-between items-center border border-gray-200 p">
       <div>
@@ -36,28 +39,32 @@ const CardProduct = ({
               ${product.price}
             </p>
           </div>
-          <button
-            className={`${
-              isHovered
-                ? "bg-blue-500 border-blue-500"
-                : "bg-white border-blue-300"
-            } border-3 border-blue-300 text-white overflow-hidden align-center px-2 py-2 max-w-[50px] hover:max-w-[120px] transition-all duration-300 flex items-center gap-2 whitespace-nowrap`}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            <AiOutlineShoppingCart
-              color={isHovered ? "white" : "dodgerblue"}
-              size={16}
-            />
-            <p
-              className={`text-white ${isHovered ? "block" : "hidden"} text-xs`}
-              onClick={() => {
-                onCartClick(product._id);
-              }}
+          {!isCartPage && (
+            <button
+              className={`${
+                isHovered
+                  ? "bg-blue-500 border-blue-500"
+                  : "bg-white border-blue-300"
+              } border-3 border-blue-300 text-white overflow-hidden align-center px-2 py-2 max-w-[50px] hover:max-w-[120px] transition-all duration-300 flex items-center gap-2 whitespace-nowrap`}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
             >
-              Add to Cart
-            </p>
-          </button>
+              <AiOutlineShoppingCart
+                color={isHovered ? "white" : "dodgerblue"}
+                size={16}
+              />
+              <p
+                className={`text-white ${
+                  isHovered ? "block" : "hidden"
+                } text-xs`}
+                onClick={() => {
+                  onCartClick(product._id);
+                }}
+              >
+                Add to Cart
+              </p>
+            </button>
+          )}
         </div>
       </div>
     </div>
